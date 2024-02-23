@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block main_content %}
+
+    {% if not object_list %}
+
+        <h2>No fruit info yet.</h2>
+
+    {% else %}
+
+        <h2>Fruits</h2>
+        <section id="dashboard">
+
+            {% for fruit in object_list %}
+
+            <div class="fruit">
+                <img src="{{ fruit.image_url }}" alt="example1"/>
+                <h3 class="title">{{ fruit.name }}</h3>
+                <p class="description">{{ fruit.description|truncatechars:50 }}</p>
+                <a class="details-btn" href="{% url 'details fruit' pk=fruit.pk %}">More Info</a>
+            </div>
+
+            {% endfor %}
+
+        </section>
+
+    {% endif %}
+
+{% endblock %}
